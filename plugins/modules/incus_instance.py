@@ -125,12 +125,12 @@ options:
         type: int
     type:
         description:
-          - Instance type can be either V(vm) or V(container).
+          - Instance type can be either V(virtual-machine) or V(container).
         required: false
         default: container
         choices:
           - container
-          - vm
+          - virtual-machine
         type: str
     wait_for_ipv4_addresses:
         description:
@@ -305,7 +305,7 @@ EXAMPLES = '''
     - name: Create container on another node
       kmpm.incus.incus_instance:
         name: new-vm-1
-        type: vm
+        type: virtual-machine
         state: started
         ignore_volatile_options: true
         wait_for_ipv4_addresses: true
