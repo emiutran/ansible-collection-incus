@@ -71,7 +71,7 @@ EXAMPLES = '''
       - description: SSH
         protocol: tcp
         listen_port: 22
-        target_backends:
+        target_backend:
           - instance01
           - instance02
           - instance03
