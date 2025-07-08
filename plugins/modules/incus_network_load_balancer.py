@@ -97,7 +97,7 @@ class IncusNetworkLoadBalancerManagement(object):
         self.description = self.module.params['description']
         self.config = self.module.params['config'] or {}
         self.backends = self.module.params['backends'] or []
-        self.ports = self.module.param['ports'] or []
+        self.ports = self.module.params['ports'] or []
         self.state = self.module.params['state']
 
         self.debug = self.module._verbosity >= 3
