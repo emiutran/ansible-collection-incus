@@ -60,7 +60,7 @@ EXAMPLES = '''
     config:
       healthcheck: "true"
       healthcheck.interval: "10"
-    backendss:
+    backends:
       - name: instance01
         target_address: 10.0.0.10
       - name: instance02
