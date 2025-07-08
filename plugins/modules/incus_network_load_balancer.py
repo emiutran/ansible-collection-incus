@@ -110,7 +110,7 @@ class IncusNetworkLoadBalancerManagement(object):
         self.diff = {'before': {}, 'after': {}}
 
     def _get_lb(self):
-        url = '/1.0/network/{0}/load-balancers/{1}'.format(self.network,self.listen_address)
+        url = '/1.0/networks/{0}/load-balancers/{1}'.format(self.network,self.listen_address)
         return self.client.query_raw('GET', url, ok_errors=[404])
 
     # Drive the state of the Load Balancer to match the specified state, creating or
@@ -132,9 +132,9 @@ class IncusNetworkLoadBalancerManagement(object):
 
         match method:
             case 'POST':
-                url = '/1.0/network/{0}/load-balancers'.format(self.network)
+                url = '/1.0/networks/{0}/load-balancers'.format(self.network)
             case 'PATCH':
-                url = '/1.0/network/{0}/load-balancers/{1}'.format(self.network,self.listen_address)
+                url = '/1.0/networks/{0}/load-balancers/{1}'.format(self.network,self.listen_address)
             case _:
                 raise Exception("invalid state")
 
@@ -146,7 +146,7 @@ class IncusNetworkLoadBalancerManagement(object):
         if self.diff['before']['state'] == "absent":
             return
 
-        url = '/1.0/network/{0}/load-balancers/{1}'.format(self.network,self.listen_address)
+        url = '/1.0/networks/{0}/load-balancers/{1}'.format(self.network,self.listen_address)
 
         if not self.module.check_mode:
             return self.client.query_raw('DELETE', url)
