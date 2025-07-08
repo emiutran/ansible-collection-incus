@@ -9,7 +9,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 DOCUMENTATION = '''
-JUST A TEST, I KNOW THIS IS WRONG
 ---
 module: incus_network_load_balancer
 author: "Emily Tran (@emiutran)"
