@@ -39,14 +39,14 @@ options:
     description:
       - Optional config values (e.g., health checks).
     type: dict
-  backends:
+  backendss:
     description:
-      - List of backend dictionaries (name, target_address, description).
+      - List of backends dictionaries (name, target_address, description).
     type: list
     elements: dict
   ports:
     description:
-      - List of port mappings (description, protocol, listen_port, target_backend).
+      - List of port mappings (description, protocol, listen_port, target_backends).
     type: list
     elements: dict
 '''
@@ -60,7 +60,7 @@ EXAMPLES = '''
     config:
       healthcheck: "true"
       healthcheck.interval: "10"
-    backends:
+    backendss:
       - name: c01
         target_address: 10.152.134.2
       - name: c02
@@ -71,7 +71,7 @@ EXAMPLES = '''
       - description: SSH
         protocol: tcp
         listen_port: 22
-        target_backend:
+        target_backends:
           - c01
           - c02
           - c03
@@ -96,8 +96,8 @@ class IncusNetworkLoadBalancerManagement(object):
         self.listen_address = self.module.params['listen_address']
         self.description = self.module.params['description']
         self.config = self.module.params['config'] or {}
-        self.backend = self.module.params['backend'] or []
-        self.port = self.module.param['port'] or []
+        self.backends = self.module.params['backends'] or []
+        self.ports = self.module.param['ports'] or []
         self.state = self.module.params['state']
 
         self.debug = self.module._verbosity >= 3
@@ -126,8 +126,8 @@ class IncusNetworkLoadBalancerManagement(object):
             'description': self.description,
             'network': self.network,
             'config': self.config,
-            'backend': self.backends,
-            'port': self.ports,
+            'backends': self.backends,
+            'ports': self.ports,
         }
 
         match method:
