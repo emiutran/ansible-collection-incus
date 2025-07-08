@@ -53,7 +53,7 @@ options:
 
 EXAMPLES = '''
 - name: Create a load balancer
-  incus_network_lb:
+  kmpm.incus.incus_network_load_balancer:
     network: default
     listen_address: 10.216.219.205
     description: Load balancer
