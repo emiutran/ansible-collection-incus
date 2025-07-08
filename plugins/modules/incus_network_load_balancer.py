@@ -127,7 +127,13 @@ class IncusNetworkLoadBalancerManagement(object):
             'network': self.network,
             'config': self.config,
             'backends': self.backends,
-            'ports': self.ports,
+            'ports': [
+                {
+                    **port,
+                    'listen_port': str(port['listen_port'])
+                }
+                for port in self.ports
+            ],
         }
 
         match method:
