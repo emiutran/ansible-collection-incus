@@ -180,7 +180,7 @@ class IncusNetworkLoadBalancerManagement(object):
                 'changed': state_changed,
                 'old_state': self.diff['before']['state'],
                 'diff': self.diff,
-                'acl': self.diff['after']['loadbalancer'],
+                'loadbalancer': self.diff['after']['loadbalancer'],
             }
             if self.debug:
                 result_json['logs'] = self.client.logs
