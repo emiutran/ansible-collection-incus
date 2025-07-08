@@ -8,7 +8,7 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-DOCUMENTATION = '''
+DOCUMENTATION = r'''
 ---
 module: incus_network_load_balancer
 author: "Emily Tran (@emiutran)"
@@ -46,7 +46,7 @@ options:
     elements: dict
   ports:
     description:
-      - List of port mappings (description, protocol, listen_port, target_backends).
+      - List of port mappings (description, protocol, listen_port, target_backend).
     type: list
     elements: dict
 '''
