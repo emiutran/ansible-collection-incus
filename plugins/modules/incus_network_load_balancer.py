@@ -61,20 +61,20 @@ EXAMPLES = '''
       healthcheck: "true"
       healthcheck.interval: "10"
     backendss:
-      - name: c01
-        target_address: 10.152.134.2
-      - name: c02
-        target_address: 10.152.134.3
-      - name: c03
-        target_address: 10.152.134.4
+      - name: instance01
+        target_address: 10.0.0.10
+      - name: instance02
+        target_address: 10.0.0.11
+      - name: instance03
+        target_address: 10.0.0.12
     ports:
       - description: SSH
         protocol: tcp
         listen_port: 22
         target_backends:
-          - c01
-          - c02
-          - c03
+          - instance01
+          - instance02
+          - instance03
 '''
 
 from ansible.module_utils.basic import AnsibleModule
