@@ -70,6 +70,9 @@ EXAMPLES = '''
         config:
           healthcheck: "true"
           healthcheck.interval: "10"
+          healthcheck.interval: "5"
+  	      healthcheck.success_count: "3"
+  	      healthcheck.timeout: "20"
         backends:
           - name: instance01
             target_address: 10.0.0.10
