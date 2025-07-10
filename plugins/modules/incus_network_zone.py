@@ -11,7 +11,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: incus_network_zone
-author: "Emily Tran (@)"
+author: "Emily Tran (@emiutran)"
 short_description: Manage Incus Network Zones
 description:
   - Create or delete Incus Network Zones using the Incus REST API.
@@ -33,7 +33,7 @@ options:
     type: dict
   project:
     description:
-      - Project name (defaults to "default").
+      - Project the Network Zone is part of
     required: false
     type: str
     default: default
