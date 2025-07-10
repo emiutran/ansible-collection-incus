@@ -8,7 +8,7 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-DOCUMENTATION = r'''
+DOCUMENTATION = '''
 ---
 module: incus_network_load_balancer
 author: "Emily Tran (@emiutran)"
@@ -39,7 +39,7 @@ options:
     description:
       - Optional config values (e.g., health checks).
     type: dict
-  backendss:
+  backends:
     description:
       - List of backends dictionaries (name, target_address, description).
     type: list
