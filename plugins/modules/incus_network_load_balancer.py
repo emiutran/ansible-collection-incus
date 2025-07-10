@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = '''
 ---
-module: incus_network_load_balancer
+module: incus_network_acl
 author: "Emily Tran (@emiutran)"
 short_description: Manage Incus Network Load Balancer
 description:
@@ -21,60 +21,70 @@ attributes:
     diff_mode:
         support: full
 options:
-   network:
+    name:
+        description:
+            - Name of the Load Balancer
+        type: str
+        required: true
     description:
-      - The network name (e.g., "default")
-    type: str
-    required: true
-  listen_address:
-    description:
-      - The IP address the load balancer listens on.
-    type: str
-    required: true
-  description:
-    description:
-      - Description of the load balancer.
-    type: str
-  config:
-    description:
-      - Optional config values (e.g., health checks).
-    type: dict
-  backends:
-    description:
-      - List of backends dictionaries (name, target_address, description).
-    type: list
-    elements: dict
-  ports:
-    description:
-      - List of port mappings (description, protocol, listen_port, target_backend).
-    type: list
-    elements: dict
-'''
-
-EXAMPLES = '''
-- name: Create a load balancer
-  kmpm.incus.incus_network_load_balancer:
-    network: default
-    listen_address: 10.216.219.205
-    description: Load balancer
+        description:
+            - A description associated with this Load Balancer
+        type: str
+        required: false
     config:
-      healthcheck: "true"
-      healthcheck.interval: "10"
+        description:
+            - The set of config entries for the network Load Balancer
+        type: dict
+        required: false
     backends:
-      - name: instance01
-        target_address: 10.0.0.10
-      - name: instance02
-        target_address: 10.0.0.11
-      - name: instance03
-        target_address: 10.0.0.12
+        description:
+          - List of backends dictionaries (name, target_address, description).
+        type: array
+        required: false
     ports:
-      - description: SSH
-        protocol: tcp
-        listen_port: 22
-        target_backend:
-          - instance01
-          - instance02
-          - instance03
+        description:
+          - List of port mappings (description, protocol, listen_port, target_backend).
+        type: array
+        required: false
+    listen_address:
+        description:
+          - the IP address the Load Balancer listens on.
+        type: array
+        required: false
+    state:
+        description:
+            - State of the network Load Balancer
+        type: str
+        choices: [present, absent]
+        default: present
+'''
+EXAMPLES = '''
+- host: localhost
+  connection: local
+  tasks:
+    - name: Create a load balancer
+      kmpm.incus.incus_network_load_balancer:
+        network: default
+        listen_address: 10.216.219.205
+        description: Load balancer
+        config:
+          healthcheck: "true"
+          healthcheck.interval: "10"
+        backends:
+          - name: instance01
+            target_address: 10.0.0.10
+          - name: instance02
+            target_address: 10.0.0.11
+          - name: instance03
+            target_address: 10.0.0.12
+        ports:
+          - description: SSH
+            protocol: tcp
+            listen_port: 22
+            target_backend:
+              - instance01
+              - instance02
+              - instance03
 '''
 
 from ansible.module_utils.basic import AnsibleModule
