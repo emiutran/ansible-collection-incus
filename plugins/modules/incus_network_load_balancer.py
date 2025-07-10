@@ -65,7 +65,7 @@ EXAMPLES = '''
     - name: Create a load balancer
       kmpm.incus.incus_network_load_balancer:
         network: default
-        listen_address: 10.216.219.205
+        listen_address: 10.10.10.200
         description: Load balancer
         config:
           healthcheck: "true"
