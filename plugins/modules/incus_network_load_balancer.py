@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = '''
 ---
-module: incus_network_acl
+module: incus_network_load_balancer
 author: "Emily Tran (@emiutran)"
 short_description: Manage Incus Network Load Balancer
 description:
