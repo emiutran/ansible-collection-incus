@@ -143,7 +143,7 @@ class IncusNetworkForwardManagement(object):
         resp = self.client.query_raw("GET", f"/1.0/networks/{self.network}/forwards")
         existing_forwards = resp.get('metadata', [])
         
-        if listen_address in [f.split("/")[-1] for f in existing_forwards]:
+        if self.listen_address in [f.split("/")[-1] for f in existing_forwards]:
             method = "PATCH"
             url = f"/1.0/networks/{self.network}/forwards/{self.listen_address}"
         else:
