@@ -63,17 +63,17 @@ EXAMPLES = '''
 - hosts: localhost
   connection: local
   tasks:
-    - name: Create network forward
+    - network: Create network forward
       kmpm.incus.incus_network_forward:
-        network: my-network-forward
+        network: my-network
         listen_address: 10.150.19.10
         config:
-            target_address: 10.150.19.111
+          target_address: 10.150.19.111
         ports:
-          - protocol: tcp
-            listen_port: "22"
-            target_port: "2022"
-            target_address: "10.150.19.112"
+        - protocol: tcp
+          listen_port: "22"
+          target_port: "2022"
+          target_address: "10.150.19.112"
         state: present
 '''
 
