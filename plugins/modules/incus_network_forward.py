@@ -139,7 +139,18 @@ class IncusNetworkForwardManagement(object):
                 url = '/1.0/network/{0}/forwards/{1}'.format(self.network,self.listen_address)
             case _:
                 raise Exception("invalid state")
+        # Check if the forward exists
+        resp = self.client.query_raw("GET", f"/1.0/networks/{self.network}/forwards")
+        existing_forwards = resp.get('metadata', [])
+        
+        if listen_address in [f.split("/")[-1] for f in existing_forwards]:
+            method = "PATCH"
+            url = f"/1.0/networks/{self.network}/forwards/{self.listen_address}"
+        else:
+            method = "POST"
+            url = f"/1.0/networks/{self.network}/forwards"
 
+        
         if not self.module.check_mode:
             return self.client.query_raw(method, url, payload=payload)
 
