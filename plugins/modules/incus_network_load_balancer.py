@@ -21,9 +21,9 @@ attributes:
     diff_mode:
         support: full
 options:
-    name:
+    network:
         description:
-            - Name of the Load Balancer
+            - Name of the network the Load Balancer uses
         type: str
         required: true
     description:
@@ -35,22 +35,23 @@ options:
         description:
             - The set of config entries for the network Load Balancer
         type: dict
-        required: false
+        default: {}
     backends:
         description:
           - List of backends dictionaries (name, target_address, description).
-        type: array
-        required: false
+        type: list
+        elements: dict
+        default: []
     ports:
         description:
           - List of port mappings (description, protocol, listen_port, target_backend).
-        type: array
-        required: false
+        type: list
+        default: []
     listen_address:
         description:
           - the IP address the Load Balancer listens on.
-        type: array
-        required: false
+        type: str
+        required: true
     state:
         description:
             - State of the network Load Balancer
