@@ -23,7 +23,7 @@ attributes:
 options:
     network:
         description:
-            - Name of the network forward
+            - Name of the network that the network forward uses
         type: str
         required: true
     description:
@@ -64,7 +64,7 @@ EXAMPLES = '''
   tasks:
     - name: Create network forward
       kmpm.incus.incus_network_forward:
-        name: my-network-forward
+        network: my-network-forward
         listen_address: 10.150.19.10
         config:
             target_address: 10.150.19.111
