@@ -59,7 +59,8 @@ options:
 '''
 
 EXAMPLES = '''
-- host: localhost
+---
+- hosts: localhost
   connection: local
   tasks:
     - name: Create network forward
