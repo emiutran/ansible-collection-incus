@@ -125,6 +125,7 @@ class IncusNetworkForwardManagement(object):
             method = 'PATCH'
 
         payload = {
+            'network': self.network,
             'listen_address': self.listen_address,
             'description': self.description,
             'config': self.config or {},
