@@ -68,7 +68,6 @@ EXAMPLES = '''
         network: my-network
         listen_address: 10.150.19.10
         config:
-          target_address: 10.150.19.111
         ports:
         - protocol: tcp
           listen_port: "22"
