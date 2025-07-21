@@ -208,7 +208,7 @@ def main():
             description=dict(type='str', required=False),
             config=dict(type='dict', required=False),
             ports=dict(type='list', elements='dict', required=False),
-            listen_address=dict(type='str', required=True)
+            listen_address=dict(type='str', required=True),
             project=dict(type='str', default='default'),
             state=dict(type='str', default='present', choices=['present', 'absent']),
         ),
