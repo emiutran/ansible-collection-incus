@@ -247,6 +247,7 @@ def main():
             description=dict(type='str', required=False),
             config=dict(type='dict', required=False),
             type=dict(type='str', required=False),
+            target_integration=dict(type='str', required=False),
             target_project=dict(type='str', required=False),
             project=dict(type='str', default='default'),
             state=dict(type='str', default='present', choices=['present', 'absent']),
