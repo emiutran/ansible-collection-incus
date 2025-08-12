@@ -122,6 +122,7 @@ class IncusNetworkPeerManagement(object):
         self.target_project = self.module.params['target_project']
         self.project = self.module.params['project']
         self.state = self.module.params['state']
+        self.actions = []
 
         self.debug = self.module._verbosity >= 3
 
