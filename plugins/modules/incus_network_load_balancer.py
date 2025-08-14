@@ -52,6 +52,11 @@ options:
           - the IP address the Load Balancer listens on.
         type: str
         required: true
+    project:
+        description:
+            - Project the load balancer network exists
+        type: str
+        default: default
     state:
         description:
             - State of the network Load Balancer
@@ -112,12 +117,16 @@ class IncusNetworkLoadBalancerManagement(object):
         self.config = self.module.params['config'] or {}
         self.backends = self.module.params['backends'] or []
         self.ports = self.module.params['ports'] or []
+        self.project= self.module.params['project']
         self.state = self.module.params['state']
 
         self.debug = self.module._verbosity >= 3
 
         try:
-            self.client = IncusClient(debug=self.debug)
+            self.client = IncusClient(
+                project=self.project,
+                debug=self.debug
+            )
         except IncusClientException as e:
             self.module.fail_json(msg=e.msg)
 
@@ -223,13 +232,14 @@ def main():
 
     module = AnsibleModule(
         argument_spec=dict(
-            network=dict(type="str", required=True),
-            listen_address=dict(type="str", required=True),
-            description=dict(type="str"),
-            config=dict(type="dict", default={}),
-            backends=dict(type="list", elements="dict", default=[]),
-            ports=dict(type="list", elements="dict", default=[]),
-            state=dict(type="str", choices=["present", "absent"], default="present"),
+            network=dict(type='str', required=True),
+            listen_address=dict(type='str', required=True),
+            description=dict(type='str'),
+            config=dict(type='dict', default={}),
+            backends=dict(type='list', elements='dict', default=[]),
+            ports=dict(type='list', elements='dict', default=[]),
+            state=dict(type='str', choices=['present', 'absent'], default='present'),
+            project=dict(type="str",default='default'),
         ),
         supports_check_mode=True
     )
