@@ -76,7 +76,7 @@ options:
 
 EXAMPLES = '''
 # Create a local peer between default ovn and test-ovn
-- host: localhost
+- hosts: localhost
   connection: local
   tasks:
     - name: Create network peer 1/2
